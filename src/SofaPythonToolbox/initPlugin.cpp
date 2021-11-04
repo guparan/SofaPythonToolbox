@@ -16,7 +16,6 @@
 * along with this library; if not, write to the Free Software Foundation,     *
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.          *
 *******************************************************************************
-*                            Plugin Stlib      v1.0                           *
 *				                                                              *
 * This plugin is also distributed under the GNU LGPL (Lesser General          *
 * Public License) license with the same conditions than SOFA.                 *
@@ -27,22 +26,53 @@
 * Contact information: https://project.inria.fr/softrobot/contact/            *
 *                                                                             *
 ******************************************************************************/
-#ifndef INITSTLIB_H
-#define INITSTLIB_H
+#include <SofaPythonToolbox/initPlugin.h>
 
+namespace sofa::component
+{
 
-#include <sofa/helper/config.h>
+extern "C" {
+    SOFA_SOFAPYTHONTOOLBOX_API void initExternalModule();
+    SOFA_SOFAPYTHONTOOLBOX_API const char* getModuleName();
+    SOFA_SOFAPYTHONTOOLBOX_API const char* getModuleVersion();
+    SOFA_SOFAPYTHONTOOLBOX_API const char* getModuleLicense();
+    SOFA_SOFAPYTHONTOOLBOX_API const char* getModuleDescription();
+    SOFA_SOFAPYTHONTOOLBOX_API const char* getModuleComponentList();
+}
 
-#ifdef SOFA_BUILD_STLIB
-#define SOFA_TARGET STLIB
-#define SOFA_STLIB_API SOFA_EXPORT_DYNAMIC_LIBRARY
-#else
-#define SOFA_STLIB_API SOFA_IMPORT_DYNAMIC_LIBRARY
-#endif
+void initExternalModule()
+{
+    static bool first = true;
+    if (!first)
+    {
+        return;
+    }
+    first = false;
+}
 
+const char* getModuleName()
+{
+    return "SofaPythonToolbox";
+}
 
-/** \mainpage
-  This is the plugin for the control of soft robots
-  */
+const char* getModuleVersion()
+{
+    return "3.0";
+}
 
-#endif // INITSTLIB_H
+const char* getModuleLicense()
+{
+    return "LGPL";
+}
+
+const char* getModuleDescription()
+{
+    return "";
+}
+
+const char* getModuleComponentList()
+{
+    return "";
+}
+
+} // namespace sofa::component

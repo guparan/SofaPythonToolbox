@@ -9,7 +9,7 @@ import time
 # Brief:
 # A simple script to load and run one time step of each scene of the examples repository 
 
-scenespaths = [os.path.dirname(os.path.abspath(__file__))+'/../src/stlib3/']
+scenespaths = [os.path.dirname(os.path.abspath(__file__))+'/../stlib3/']
 
 sofabin=""
 if len(sys.argv) > 1: sofabin  = sys.argv[1]

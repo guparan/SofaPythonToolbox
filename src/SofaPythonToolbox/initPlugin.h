@@ -16,7 +16,6 @@
 * along with this library; if not, write to the Free Software Foundation,     *
 * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.          *
 *******************************************************************************
-*                            Plugin Stlib      v1.0                           *
 *				                                                              *
 * This plugin is also distributed under the GNU LGPL (Lesser General          *
 * Public License) license with the same conditions than SOFA.                 *
@@ -27,74 +26,20 @@
 * Contact information: https://project.inria.fr/softrobot/contact/            *
 *                                                                             *
 ******************************************************************************/
-#include "initPlugin.h"
-#include <sofa/core/ObjectFactory.h>
+#ifndef INITSOFAPYTHONTOOLBOX_H
+#define INITSOFAPYTHONTOOLBOX_H
 
-#include <sofa/helper/system/PluginManager.h>
-using sofa::helper::system::PluginManager;
-using sofa::helper::system::Plugin;
+#include <sofa/helper/config.h>
 
-#include <sofa/helper/system/DynamicLibrary.h>
-using sofa::helper::system::DynamicLibrary;
+#ifdef SOFA_BUILD_SOFAPYTHONTOOLBOX
+#define SOFA_TARGET SofaPythonToolbox
+#define SOFA_SOFAPYTHONTOOLBOX_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#else
+#define SOFA_SOFAPYTHONTOOLBOX_API SOFA_IMPORT_DYNAMIC_LIBRARY
+#endif
 
-#include <sofa/helper/system/FileSystem.h>
-using sofa::helper::system::FileSystem;
+/** \mainpage
+  This is the plugin for the control of soft robots
+  */
 
-#include <sofa/helper/Utils.h>
-using sofa::helper::Utils;
-
-#include <fstream>
-
-namespace sofa
-{
-
-namespace component
-{
-
-extern "C" {
-    SOFA_STLIB_API void initExternalModule();
-    SOFA_STLIB_API const char* getModuleName();
-    SOFA_STLIB_API const char* getModuleVersion();
-    SOFA_STLIB_API const char* getModuleLicense();
-    SOFA_STLIB_API const char* getModuleDescription();
-    SOFA_STLIB_API const char* getModuleComponentList();
-}
-
-void initExternalModule()
-{
-    static bool first = true;
-    if (!first)
-    {
-        return;
-    }
-    first = false;
-}
-
-const char* getModuleName()
-{
-    return "STLIB";
-}
-
-const char* getModuleVersion()
-{
-    return "3.0";
-}
-
-const char* getModuleLicense()
-{
-    return "LGPL";
-}
-
-const char* getModuleDescription()
-{
-    return "";
-}
-
-const char* getModuleComponentList()
-{
-    return "";
-}
-
-}
-
-}
+#endif // INITSOFAPYTHONTOOLBOX_H
