@@ -64,6 +64,6 @@ cmake_dependent_option(SOFAPYTHONTOOLBOX_BUILD_SPLIB_TESTS "Compile the tests" O
 if(SOFAPYTHONTOOLBOX_BUILD_SPLIB_TESTS)
     enable_testing()
     add_subdirectory(SPLIB_test)
-endif(
+endif()
 
 include(cmake/packaging.cmake)
